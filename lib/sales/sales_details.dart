@@ -1,13 +1,13 @@
-import 'package:admob_flutter/admob_flutter.dart';
+
 import 'package:clipboard/clipboard.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/home/main_home.dart';
 import 'package:ecommerce/view/widgets/custom_text.dart';
 import 'package:ecommerce/viewmodel/home_view_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_native_admob/native_admob_controller.dart';
 import 'package:get/get.dart';
 
 class SalesDetails extends StatefulWidget {
@@ -27,9 +27,6 @@ class _PostsScreenState extends State<SalesDetails> {
   List _resultsList = [];
 
   GlobalKey<ScaffoldState> scaffoldState = GlobalKey();
-  final _nativeAd = NativeAdmobController();
-  AdmobBannerSize bannerSize;
-  AdmobInterstitial intersitialAd;
 
 
   @override
@@ -37,24 +34,24 @@ class _PostsScreenState extends State<SalesDetails> {
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Colors.black),
           title: Container(
-              height: 30,
+              height: Dimentions.ViewContainer30,
               child: Center(
                   child: Row(
                 children: [
                   SizedBox(width: MediaQuery.of(context).size.width * 0.62),
-                  SizedBox(width: 5),
+                  SizedBox(width: Dimentions.width5),
                 ],
               ))),
         ),
         body: Container(
           color: Colors.white38,
           child: Column(children: [
-
             SizedBox(
-              height: 7,
+              height: Dimentions.height15,
             ),
 
             Flexible(
@@ -89,31 +86,32 @@ class _PostsScreenState extends State<SalesDetails> {
                                                 child: Row(
                                                   crossAxisAlignment:
                                                       CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Custom_Text(
-                                                      text: "Travira ",
-                                                      fontSize: 30,
-                                                      color: Colors.black,
-                                                    ),
-                                                    Custom_Text(
-                                                      text: "مندوب ",
-                                                      fontSize: 30,
-                                                      color: Colors.black,
+                                                      text: "104".tr,
+                                                      fontSize: 25,
+                                                      color: Colors.black45,
                                                     ),
                                                   ],
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(height: 11),
+                                            SizedBox(
+                                                height: Dimentions.height10),
                                             Container(
-                                                height: 310,
+                                                height: Dimentions
+                                                    .pageViewContainer310,
                                                 child: InkWell(
                                                   child: Card(
                                                     color: Colors.white,
                                                     child: Container(
                                                       child: Column(
                                                         children: [
-                                                          SizedBox(height: 11),
+                                                          SizedBox(
+                                                              height: Dimentions
+                                                                  .height10),
                                                           Column(
                                                             children: [
                                                               Padding(
@@ -132,26 +130,29 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                         //width:100,
                                                                         child:
                                                                             Text(
-                                                                          ("name : "),
+                                                                          ("Name : "
+                                                                              .tr),
                                                                           style: TextStyle(
-                                                                              color: Colors.blue,
-                                                                              fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              color: Colors.black,
+                                                                              fontSize: 20,
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
                                                                           width:
-                                                                              10),
+                                                                              Dimentions.height10),
                                                                       Container(
                                                                         //width:100,
                                                                         child:
                                                                             Text(
-                                                                          (posts
-                                                                              .data()['name']??""),
+                                                                          (posts.data()['name'] ??
+                                                                              ""),
                                                                           style: TextStyle(
-                                                                              color: Colors.black,
+                                                                              color: Colors.black54,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                     ],
@@ -159,7 +160,8 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                  height: 5),
+                                                                  height: Dimentions
+                                                                      .height10),
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
@@ -178,37 +180,40 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                             Text(
                                                                           ("code : "),
                                                                           style: TextStyle(
-                                                                              color: Colors.blue,
+                                                                              color: Colors.black,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
                                                                           width:
-                                                                              10),
+                                                                              Dimentions.width5),
                                                                       Container(
                                                                         //width:100,
                                                                         child:
                                                                             Text(
-                                                                          (posts
-                                                                              .data()['code']??""),
+                                                                          (posts.data()['code'] ??
+                                                                              ""),
                                                                           style: TextStyle(
-                                                                              color: Colors.black,
+                                                                              color: Colors.black54,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
-                                                                        width:
-                                                                            6,
+                                                                        width: Dimentions
+                                                                            .width5,
                                                                       ),
+                                                                      Spacer(),
                                                                       InkWell(
                                                                         child:
                                                                             Container(
                                                                           width:
-                                                                              55,
+                                                                              Dimentions.width50,
                                                                           height:
-                                                                              50,
+                                                                              Dimentions.height50,
                                                                           child:
                                                                               Center(child: Image.asset("assets/copy2.png")),
                                                                         ),
@@ -231,7 +236,8 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                 ),
                                                               ),
                                                               SizedBox(
-                                                                  height: 5),
+                                                                  height: Dimentions
+                                                                      .height5),
                                                               Padding(
                                                                 padding:
                                                                     const EdgeInsets
@@ -250,29 +256,35 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                             Text(
                                                                           ("coins : "),
                                                                           style: TextStyle(
-                                                                              color: Colors.blue,
+                                                                              color: Colors.black,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
                                                                           width:
-                                                                              10),
+                                                                              Dimentions.width10),
                                                                       Container(
                                                                         //width:100,
                                                                         child:
                                                                             Text(
-                                                                          (posts.data()['coins']??"")
+                                                                          (posts.data()['coins'] ?? "")
                                                                               .toString(),
                                                                           style: TextStyle(
-                                                                              color: Colors.black,
+                                                                              color: Colors.black54,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                     ],
                                                                   ),
                                                                 ),
+                                                              ),
+                                                              SizedBox(
+                                                                height: Dimentions
+                                                                    .height15,
                                                               ),
                                                               Padding(
                                                                 padding:
@@ -292,14 +304,15 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                             Text(
                                                                           ("downloads : "),
                                                                           style: TextStyle(
-                                                                              color: Colors.blue,
+                                                                              color: Colors.black,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                       SizedBox(
                                                                           width:
-                                                                              10),
+                                                                              Dimentions.width10),
                                                                       Container(
                                                                         //width:100,
                                                                         child:
@@ -307,9 +320,10 @@ class _PostsScreenState extends State<SalesDetails> {
                                                                           (posts.data()['downloads']).toString() ??
                                                                               "0",
                                                                           style: TextStyle(
-                                                                              color: Colors.black,
+                                                                              color: Colors.black54,
                                                                               fontSize: 18,
-                                                                              fontWeight: FontWeight.bold),
+                                                                              fontWeight: FontWeight.bold,
+                                                                              fontFamily: "Reboto"),
                                                                         ),
                                                                       ),
                                                                     ],
@@ -325,11 +339,11 @@ class _PostsScreenState extends State<SalesDetails> {
                                                   onTap: () {},
                                                 )),
                                             RaisedButton(
-                                                color: Colors.blue,
+                                                color: Colors.yellow,
                                                 child: Text(
-                                                  "انتقل للرئيسية ",
+                                                  "105".tr,
                                                   style: TextStyle(
-                                                      color: Colors.white,
+                                                      color: Colors.black,
                                                       fontSize: 18),
                                                 ),
                                                 onPressed: () {

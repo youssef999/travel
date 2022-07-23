@@ -33,11 +33,19 @@ class ToogleScreen extends StatelessWidget {
   @override
    Widget build(BuildContext context) {
      return Scaffold(
+       appBar: AppBar(
+         toolbarHeight: 0,
+         elevation: 0,
+         backgroundColor: Colors.yellow,
+         iconTheme: IconThemeData(
+           color: Colors.yellow,
+         ),
+       ),
        body:Container(
          child: Column(
            crossAxisAlignment:CrossAxisAlignment.center,
            children: [
-             SizedBox(height: 20,),
+             SizedBox(height: 30,),
 //              InkWell(
 //                child: Container(
 //                  child: Column(

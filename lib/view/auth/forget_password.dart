@@ -1,3 +1,4 @@
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/auth/login_view.dart';
 import 'package:ecommerce/view/auth/register_view.dart';
 import 'package:ecommerce/view/widgets/custom_button.dart';
@@ -8,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ForgetPasswordView extends GetWidget<AuthViewModel> {
+
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -42,16 +45,17 @@ class ForgetPasswordView extends GetWidget<AuthViewModel> {
                         fontFamily: "Reboto"),
                   ),
                   SizedBox(
-                    height: 5,
+                    height: Dimentions.height5,
                   ),
                   Text(
                     "52".tr,
                     textAlign: TextAlign.center,
                   ),
-                  SizedBox(height: 80),
+                  SizedBox(height: Dimentions.height70),
                   CustomTextFormField(
                       text: "4".tr,
                       hint: "5".tr,
+                      obx:false,
                       obs: false,
                       onSave: (value) {
                         controller.email = value;
@@ -61,7 +65,9 @@ class ForgetPasswordView extends GetWidget<AuthViewModel> {
                           print("error");
                         }
                       }),
-                  SizedBox(height: 100),
+
+                  SizedBox(height: 16),
+
                   CustomButton(
                     onPressed: () {
                       _formKey.currentState.save();
@@ -72,7 +78,7 @@ class ForgetPasswordView extends GetWidget<AuthViewModel> {
                     text: "53".tr,
                   ),
                   SizedBox(
-                    height: 50,
+                    height: Dimentions.height50,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -81,13 +87,18 @@ class ForgetPasswordView extends GetWidget<AuthViewModel> {
                         "10".tr,
                         style: TextStyle(fontSize: 16),
                       ),
+                      SizedBox(
+                        width: 3,
+                      ),
+
                       GestureDetector(
                         onTap: () {
                           Get.to(RegisterView());
                         },
                         child: Text(
                           "2".tr,
-                          style: TextStyle(fontSize: 16, color: Colors.blue),
+                          style: TextStyle(
+                              fontSize: 16, color: Colors.redAccent),
                         ),
                       ),
                     ],

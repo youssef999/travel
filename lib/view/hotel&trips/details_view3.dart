@@ -1,4 +1,4 @@
-
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/booking/booking_form.dart';
 import 'package:ecommerce/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +33,6 @@ class _DetailsView2State extends State<DetailsView3> {
 
   String lg = '';
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,18 +44,17 @@ class _DetailsView2State extends State<DetailsView3> {
       body: Container(
         child: Column(
           children: [
-            SizedBox(height: 6),
+            SizedBox(height: 0),
 
             Container(
-
                 height: MediaQuery.of(context).size.width - 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
+                        topLeft: Radius.circular(Dimentions.Radius40),
+                        topRight: Radius.circular(Dimentions.Radius40),
+                        bottomLeft: Radius.circular(Dimentions.Radius40),
+                        bottomRight: Radius.circular(Dimentions.Radius40)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
@@ -66,7 +64,7 @@ class _DetailsView2State extends State<DetailsView3> {
                       ),
                     ]),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(Dimentions.Radius30),
                     child: Image.network(widget.image, fit: BoxFit.cover))),
 
             // SizedBox(height: 15),
@@ -83,16 +81,12 @@ class _DetailsView2State extends State<DetailsView3> {
                               text: widget.name.toString(),
                               fontSize: 22,
                               color: Colors.black),
-
-                          SizedBox(width: 52),
-
+                          SizedBox(width: Dimentions.width50),
                           Custom_Text(
-                            text: '76'.tr +" "+ widget.city+" ",
+                            text: '76'.tr + " " + widget.city + " ",
                             fontSize: 18,
                             color: Colors.black,
                           ),
-
-
                         ],
                       ),
                       //  SizedBox(height: 15),
@@ -110,22 +104,21 @@ class _DetailsView2State extends State<DetailsView3> {
                           SizedBox(
                             width: 110,
                           ),
-
                         ],
                       ),
 
                       SizedBox(
-                        height: 20,
+                        height: Dimentions.height20,
                       ),
 
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: Text(widget.details,
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 16)),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 16)),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Dimentions.height20,
                       ),
 
                       Directionality(
@@ -145,11 +138,12 @@ class _DetailsView2State extends State<DetailsView3> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: SizedBox(
-                height: 56,
+                height: Dimentions.ViewContainer56,
                 width: double.infinity,
                 child: FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius:
+                            BorderRadius.circular(Dimentions.Radius20)),
                     color: Colors.yellow,
                     onPressed: () {
                       Get.to(BookingForm(
@@ -161,16 +155,14 @@ class _DetailsView2State extends State<DetailsView3> {
                     child: Text(
                       "42".tr,
                       style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                        fontWeight:FontWeight.w700
-                      ),
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Reboto"),
                     )),
               ),
             ),
-            Container(height: 30),
-
-
+            Container(height: Dimentions.height30),
           ],
         ),
       ),

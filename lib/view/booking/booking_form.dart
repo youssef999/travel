@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/pay_mob/modules/payment/cubit/cubit.dart';
 import 'package:ecommerce/pay_mob/modules/payment/cubit/states.dart';
 import 'package:ecommerce/pay_mob/modules/payment/cubit/toogle.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 
 class BookingForm extends StatefulWidget {
   String city, trip;
@@ -30,17 +30,13 @@ class _AdressScreenState extends State<BookingForm> {
   int shipping = 0;
   num pricex = 0.0;
 
-
   @override
   Widget build(BuildContext context) {
-
     final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
     TextEditingController name = TextEditingController();
     TextEditingController mobile = TextEditingController();
     TextEditingController code = TextEditingController();
     final box = GetStorage();
-
-
 
     return Scaffold(
         body: SingleChildScrollView(
@@ -49,10 +45,10 @@ class _AdressScreenState extends State<BookingForm> {
         child: Column(
           children: [
             Container(
-              height: 220,
-              width: 550,
+              height: Dimentions.pageViewContainer220,
+              width: Dimentions.width550,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(30.0),
+                borderRadius: BorderRadius.circular(Dimentions.Radius30),
                 child: Image.asset(
                   'assets/tx2.jpg',
                   //'assets/ezgif.com-gif-maker.jpg',
@@ -61,7 +57,7 @@ class _AdressScreenState extends State<BookingForm> {
               ),
             ),
             SizedBox(
-              height: 11,
+              height: Dimentions.height10,
             ),
             Text(
               "43".tr,
@@ -95,7 +91,7 @@ class _AdressScreenState extends State<BookingForm> {
                     'اسوان',
                     'الجيزة',
                     'الأقصر',
-                    'الأسيوط',
+                    'أسيوط',
                     'البحر الأحمر',
                     'البحيرة',
                     'المنيا',
@@ -127,7 +123,7 @@ class _AdressScreenState extends State<BookingForm> {
               ),
             ),
             SizedBox(
-              height: 12,
+              height: Dimentions.height10,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
@@ -135,13 +131,13 @@ class _AdressScreenState extends State<BookingForm> {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
+                    Radius.circular(Dimentions.Radius12),
                   ),
                 ),
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 88,
+                      width: Dimentions.width88,
                     ),
                     Text(
                       "  To : ",
@@ -152,17 +148,18 @@ class _AdressScreenState extends State<BookingForm> {
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 19,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Reboto"),
                     ),
                     SizedBox(
-                      width: 10,
+                      width: Dimentions.width10,
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 7,
+              height: Dimentions.height7,
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40),
@@ -170,36 +167,36 @@ class _AdressScreenState extends State<BookingForm> {
                 decoration: BoxDecoration(
                   color: Colors.grey[200],
                   borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
+                    Radius.circular(Dimentions.Radius12),
                   ),
                 ),
                 child: Row(
                   children: [
                     SizedBox(
-                      width: 65,
+                      width: Dimentions.width65,
                     ),
                     Text(
                       "  Trip :  ",
                       style: TextStyle(color: Colors.grey, fontSize: 17),
                     ),
                     SizedBox(
-                      width: 4,
+                      width: Dimentions.width5,
                     ),
                     Text(
                       widget.trip,
                       style: TextStyle(
                           color: Colors.black,
                           fontSize: 17,
-                          fontWeight: FontWeight.w500),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "Reboto"),
                     ),
                   ],
                 ),
               ),
             ),
             SizedBox(
-              height: 12,
+              height: Dimentions.height12,
             ),
-
             Padding(
               padding: const EdgeInsets.only(top: 8.0, right: 40, left: 40),
               child: Center(
@@ -217,14 +214,14 @@ class _AdressScreenState extends State<BookingForm> {
                   // textAlign:TextAlign.end,
                   decoration: InputDecoration(
                     hintText: '18'.tr,
-                    hintStyle: TextStyle(color: Colors.grey),
+                    hintStyle:
+                        TextStyle(color: Colors.grey, fontFamily: "Reboto"),
                     fillColor: Colors.white,
                   ),
                 ),
               ),
             ),
-
-            SizedBox(height: 12),
+            SizedBox(height: Dimentions.height12),
             Column(
               children: [
                 Text(
@@ -267,7 +264,7 @@ class _AdressScreenState extends State<BookingForm> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 8.0, right: 40, left: 40),
+              padding: const EdgeInsets.only(top: 1.0, right: 40, left: 40),
               child: Center(
                 child: TextFormField(
                   controller: mobile,
@@ -290,436 +287,403 @@ class _AdressScreenState extends State<BookingForm> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 15,
-            ),
-
+            // SizedBox(
+            //   height: 5 //Dimentions.height15,
+            // ),
             Padding(
               padding: const EdgeInsets.only(top: 0.5, left: 40, right: 40),
               child: GetBuilder<CodesViewModel>(
                 init: Get.find(),
-                builder: (controller) => SingleChildScrollView(
-                  child: Container(
-                    height: 170,
-                    child: ListView.separated(
-                      itemCount: 1, //controller.employeeModel.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        //controller.codeModel[index].codes.toString(),
-                        return Column(
-                          children: [
-                            Container(
-                              width: 310,
-                              child: TextFormField(
-                                controller: code,
-                                decoration: InputDecoration(
-                                  hintText: "24".tr,
-                                  hintStyle: TextStyle(fontSize: 15),
-                                ),
-                                // validator: (value) {
-                                //   if (value.isEmpty) {
-                                //     return "ادخل البرومو كود  ";
-                                //   }
-                                // },
-                                onSaved: (value) {
-                                  print(value);
-                                  code.text = value;
-                                  if (code.text.contains(controller
-                                      .codeModel[index].codes
-                                      .toString()
-                                      .split(',')
-                                      .toString())) {
-                                    print("ttttt");
-                                  } else {
-                                    print("xxx");
-                                  }
-                                },
+                builder: (controller) => Container(
+                  height:170, // Dimentions.pageViewContainer170,
+                  child: ListView.separated(
+                    itemCount: 1,
+                    physics: BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+
+                    //controller.employeeModel.length,
+                    //crollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      //controller.codeModel[index].codes.toString(),
+                      return Column(
+                        children: [
+                          Container(
+                            width: Dimentions.width310,
+                            child: TextFormField(
+                              controller: code,
+                              decoration: InputDecoration(
+                                hintText: "24".tr,
+                                hintStyle: TextStyle(
+                                    fontSize: 15, fontFamily: "Reboto"),
                               ),
+                              // validator: (value) {
+                              //   if (value.isEmpty) {
+                              //     return "ادخل البرومو كود  ";
+                              //   }
+                              // },
+                              onSaved: (value) {
+                                print(value);
+                                code.text = value;
+                                // if (code.text.contains(controller
+                                //     .codeModel[index].codes.toString().split(',').toString())) {
+                                //   print("tttttCode");
+                                // } else {
+                                //   print("xxxCode");
+                                // }
+                              },
                             ),
-                            Text(
-                              "46".tr,
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: 12,
+                          ),
+                          Text(
+                            "46".tr,
+                            style: TextStyle(
+                              color: Colors.grey,
+                              fontSize: 12,
+                            ),
+                          ),
+                          SizedBox(height: 2 //Dimentions.height10,
                               ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            GetBuilder<AuthViewModel>(
-                                init: Get.find(),
-                                builder: (controller3) => Column(
-                                      children: [
-                                        GetBuilder<EmployeeViewModel>(
-                                          init: Get.find(),
-                                          builder: (controller2) => FlatButton(
-                                              color: Colors.yellow,
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          15)),
-                                              child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: 15),
-                                                child: Text(
-                                                  "45".tr,
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontFamily: "Reboto",
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.black),
+                          GetBuilder<AuthViewModel>(
+                              init: Get.find(),
+                              builder: (controller3) => Column(
+                                    children: [
+                                      GetBuilder<EmployeeViewModel>(
+                                        init: Get.find(),
+                                        builder: (controller2) => FlatButton(
+                                            color: Colors.yellow,
+                                            shape: RoundedRectangleBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(
+                                                        Dimentions.Radius15)),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 15),
+                                              child: Text(
+                                                "45".tr,
+                                                style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontFamily: "Reboto",
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Colors.black,
                                                 ),
                                               ),
-                                              onPressed: () async {
-                                                num px=0;
-                                                 _formKey.currentState.save();
-                                                    if (_formKey.currentState.validate()) {
-                                                      final box = GetStorage();
-                                                      String coponCode = box
-                                                          .read('code_end') ??
-                                                          "x";
-                                                      if (controller3.price == null){
-                                                        px= (widget.price * controller3.x2);
-                                                      }
-                                                      if (controller3.price != null){
+                                            ),
+                                            onPressed: () async {
+                                              _formKey.currentState.save();
+                                              if (_formKey.currentState
+                                                  .validate()) {
+                                                final box = GetStorage();
+                                String coponCode = box.read('code_end') ?? "x";
+                                print("coponCode"+coponCode);
 
-                                                        px=controller3.price;
+                              //    if (coponCode == 'x' || code.text != coponCode) {
+                              //                     print("pppDone");
+                              //
+                              // print("ttt="+controller.codeModel[index].codes.toString());
+                              // print("codeTxt=="+code.text);
 
-                                                      }
-                                                      print("px="+px.toString());
 
-                            if (coponCode == 'x' &&  px >=30 || code.text != coponCode && px >=4000) {
-                                                        print("ppp");
-                                                        if (controller
-                                                            .codeModel[index]
-                                                            .codes
-                                                            .contains(
-                                                            code.text)) {
-                                                          print("ttt");
-                                                          Firestore.instance
-                                                              .collection('emp')
-                                                              .where("code",
-                                                              isEqualTo: code
-                                                                  .text)
-                                                              .get()
-                                                              .then((
-                                                              snapshot) async {
-                                                            print("sss" +
-                                                                snapshot
-                                                                    .docs[index]
-                                                                ['name']
-                                                                    .toString());
-                                                            snapshot
-                                                                .docs.first
-                                                                .reference
-                                                                .update({
-                                                              'coins':
-                                                              snapshot
-                                                                  .docs[index]
-                                                              ['coins'] +
-                                                                  10
-                                                            }).then((
-                                                                value) async {
-                                                              print("fffyy=" +
-                                                                  snapshot
-                                                                      .docs[index]
-                                                                  ['nsba']
-                                                                      .toString());
+                             if (controller.codeModel[index].codes.contains(code.text.toString())) {
 
-                                                              controller3
-                                                                  .travelcode(
-                                                                  widget.price,
-                                                                  snapshot
-                                                                      .docs[index]['nsba'],
-                                                                  controller3
-                                                                      .x2,
-                                                                  shipping);
-                                                              final box = GetStorage();
+                                                    print("ttt="+controller.codeModel[index].codes.toString());
+                                                    Firestore.instance
+                                                        .collection('emp').where("code", isEqualTo: code.text).get()
+                                                        .then((snapshot) async {
+                                                      print("sss" +
+                                                          snapshot.docs[index]
+                                                                  ['name']
+                                                              .toString());
 
-                                                              box.write(
-                                                                  'code_end',
-                                                                  code.text);
+                                                      snapshot
+                                                          .docs.first.reference
+                                                          .update({
+                                                        'coins':
+                                                            snapshot.docs[index]
+                                                                    ['coins'] +
+                                                                10
+                                                      }).then((value) async {
+                                                        print("fffyy=" +
+                                                            snapshot.docs[index]
+                                                                    ['nsba']
+                                                                .toString());
 
-                                                              box.write('nsba',
-                                                                  snapshot
-                                                                      .docs[index]['nsba']
-                                                                      .toString());
+                                                        controller3.travelcode(
+                                                            widget.price,
+                                                            snapshot.docs[index]
+                                                                ['nsba'],
+                                                            controller3.x2,
+                                                            shipping);
+                                                        final box =
+                                                            GetStorage();
 
-                                                              if (controller3
-                                                                  .price !=
-                                                                  null) {
-                                                                pricex =
-                                                                    controller3
-                                                                        .price;
-                                                              }
+                                                        box.write('code_end',
+                                                            code.text);
 
-                                                              if (controller3
-                                                                  .price ==
-                                                                  null) {
-                                                                pricex =
-                                                                    widget
-                                                                        .price *
-                                                                        controller3
-                                                                            .x2;
-                                                              }
+                                                        box.write(
+                                                            'nsba',
+                                                            snapshot.docs[index]
+                                                                    ['nsba']
+                                                                .toString());
 
-                                                              Get.snackbar(
-                                                                  'Done  ',
-                                                                  '98'.tr,
-                                                                  colorText:
-                                                                  Colors.white,
-                                                                  backgroundColor:
-                                                                  Colors
-                                                                      .lightGreen);
-                                                            });
-                                                          });
-                                                        } else {
-                                                          print("ooo");
-                                                          Get.snackbar(
-                                                              'Wrong !',
-                                                              '97'.tr,
-                                                              colorText: Colors
-                                                                  .white,
-                                                              backgroundColor:
-                                                              Colors.red);
+                                                        if (controller3.price !=
+                                                            null) {
+                                                          pricex =
+                                                              controller3.price;
                                                         }
-                                                      }
-                            else {
-                              print("sss");
-                              Get.snackbar(
-                                  'Wrong !',
-                                  '97'.tr,
-                                  colorText: Colors
-                                      .white,
-                                  backgroundColor:
-                                  Colors.red);
-                            }
-                                                    } else {
-                                                      print("sss");
-                                                      // Get.snackbar(
-                                                      //     'Wrong !',
-                                                      //     ' Enter information',
-                                                      //     colorText: Colors
-                                                      //         .white,
-                                                      //     backgroundColor:
-                                                      //         Colors.red);
-                                                    }
-                                              }),
-                                        ),
 
-                                        SizedBox(
-                                          height: 2,
-                                        ),
+                                                        if (controller3.price ==
+                                                            null) {
+                                                          pricex = widget
+                                                                  .price *
+                                                              controller3.x2;
+                                                        }
 
-                                        // if(code.text ==null || code.text=='' )
-                                        if (controller3.price == null)
-                                          Text(
-                                            "Total = " +
-                                                (widget.price * controller3.x2)
-                                                    .toString(),
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 22,
-                                            ),
+                                                        Get.snackbar(
+                                                            'Done  ', '98'.tr,
+                                                            colorText:
+                                                                Colors.white,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .lightGreen);
+                                                      });
+                                                    });
+                                                  }
+
+                                       else {
+                                                    print("ooo");
+                                                    Get.snackbar(
+                                                        'Wrong !', '97'.tr,
+                                                        colorText: Colors.white,
+                                                        backgroundColor:
+                                                            Colors.red);
+                                                  }
+                                                // } else {
+                                                //   print("sss");
+                                                //   Get.snackbar(
+                                                //       'Wrong !', '97'.tr,
+                                                //       colorText: Colors.white,
+                                                //       backgroundColor:
+                                                //           Colors.red);
+                                                // }
+                                              } else {
+                                                print("sss");
+                                                // Get.snackbar(
+                                                //     'Wrong !',
+                                                //     ' Enter information',
+                                                //     colorText: Colors
+                                                //         .white,
+                                                //     backgroundColor:
+                                                //         Colors.red);
+                                              }
+                                            }),
+                                      ),
+
+                                      SizedBox(
+                                        height: 2,
+                                      ),
+
+                                      // if(code.text ==null || code.text=='' )
+                                      if (controller3.price == null)
+                                        Text(
+                                          "Total = " +
+                                              (widget.price * controller3.x2)
+                                                  .toString(),
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 22,
                                           ),
-                                        if (controller3.price != null)
-                                          //   if(code.text !=null && code.text!='' )
-                                          Text(
-                                            "Total = " +
-                                                controller3.price.toString(),
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 22,
-                                            ),
+                                        ),
+                                      if (controller3.price != null)
+                                        //   if(code.text !=null && code.text!='' )
+                                        Text(
+                                          "Total = " +
+                                              controller3.price.toString(),
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 22,
                                           ),
-                                      ],
-                                    ))
-                          ],
-                        );
-                      },
-                      separatorBuilder: (context, index) => SizedBox(
-                        width: 8,
-                      ),
+                                        ),
+                                    ],
+                                  ))
+                        ],
+                      );
+                    },
+                    separatorBuilder: (context, index) => SizedBox(
+                      width: Dimentions.width10,
                     ),
                   ),
                 ),
               ),
             ),
-
             SizedBox(
               height: 2,
             ),
+            GetBuilder<AuthViewModel>(
+                init: Get.find(),
+                builder: (controller3) => Column(children: [
+                      GetBuilder<EmployeeViewModel>(
+                        init: Get.find(),
+                        builder: (controller2) => BlocProvider(
+                          create: (context) => paymentCubit(),
+                          child: BlocConsumer<paymentCubit, PaymentStates>(
+                            listener: (context, state) {
+                              //   // add when paymob is live
+                              // if (state is paymentRefCodeSuccessSate) {
+                              //   String name1 = box.read('sales_name') ?? 'x';
+                              //   String namex = box.read('name') ?? 'x';
+                              //   String emailx = box.read('email') ?? 'x';
+                              //   String nsba = box.read('nsba') ?? 'x';
+                              //   int num = box.read('num') ?? 0;
+                              //   int pricex = 0;
+                              //   if (pricex == 0) {
+                              //     pricex = (widget.price * num + shipping);
+                              //   } else {
+                              //     pricex = pricex;
+                              //   }
+                              //   print("pricex=" + pricex.toString());
+                              //
+                              //   _formKey.currentState.save();
+                              //   if (_formKey.currentState.validate()) {
+                              //     Get.to(ToogleScreen(
+                              //       name: name.text ?? "",
+                              //       email: emailx ?? "",
+                              //       phone: mobile.text ?? "",
+                              //       code: code.text ?? "",
+                              //       d_app: name1 ?? "",
+                              //       from: x.toString(),
+                              //       point: "it will be updated soon",
+                              //       to: widget.city.toString(),
+                              //       trip: widget.trip.toString(),
+                              //       // 'price':widget.price.toString(),
+                              //       nsba_offer: nsba,
+                              //       num: num.toString(),
+                              //       status: "pending",
+                              //       total: pricex.toString(),
+                              //     ));
+                              //   }
+                              // }
+                            },
+                            builder: (context, state) {
+                              return RaisedButton(
+                                  child: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 20),
+                                    child: SizedBox(
+                                      height: 56,
+                                      width: double.infinity,
+                                      child: FlatButton(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(
+                                                Dimentions.Radius20)),
+                                        color: Colors.yellow,
+                                        child: Text(
+                                          "42".tr,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 23,
+                                              fontFamily: "Reboto",
+                                              fontStyle: FontStyle.italic),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  textColor: Colors.black,
+                                  color: Colors.yellow,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          Dimentions.Radius10)),
+                                  onPressed: () {
+                                    String name1 =
+                                        box.read('sales_name') ?? 'x';
+                                    String namex = box.read('name') ?? 'x';
+                                    String emailx = box.read('email') ?? 'x';
+                                    String nsba = box.read('nsba') ?? 'x';
+                                    int num = box.read('num') ?? 1;
+                                    int pricex2 = 0;
+                                    if (pricex2 == 0) {
+                                      pricex2 = (widget.price * num + shipping);
+                                    }
+                                    else {
+                                      pricex2 = pricex2;
+                                    }
+                                    print("pricex=" + pricex2.toString());
+                                    int finalPrice = pricex2 * 100;
 
-        GetBuilder<AuthViewModel>(
-          init: Get.find(),
-          builder: (controller3) => Column(
-              children: [
-          GetBuilder<EmployeeViewModel>(
-          init: Get.find(),
-          builder: (controller2) =>
-              BlocProvider(
-              create: (context) => paymentCubit(),
-              child: BlocConsumer<paymentCubit, PaymentStates>(
-                listener: (context, state) {
-                  //   // add when paymob is live
-                  // if (state is paymentRefCodeSuccessSate) {
-                  //   String name1 = box.read('sales_name') ?? 'x';
-                  //   String namex = box.read('name') ?? 'x';
-                  //   String emailx = box.read('email') ?? 'x';
-                  //   String nsba = box.read('nsba') ?? 'x';
-                  //   int num = box.read('num') ?? 0;
-                  //   int pricex = 0;
-                  //   if (pricex == 0) {
-                  //     pricex = (widget.price * num + shipping);
-                  //   } else {
-                  //     pricex = pricex;
-                  //   }
-                  //   print("pricex=" + pricex.toString());
-                  //
-                  //   _formKey.currentState.save();
-                  //   if (_formKey.currentState.validate()) {
-                  //     Get.to(ToogleScreen(
-                  //       name: name.text ?? "",
-                  //       email: emailx ?? "",
-                  //       phone: mobile.text ?? "",
-                  //       code: code.text ?? "",
-                  //       d_app: name1 ?? "",
-                  //       from: x.toString(),
-                  //       point: "it will be updated soon",
-                  //       to: widget.city.toString(),
-                  //       trip: widget.trip.toString(),
-                  //       // 'price':widget.price.toString(),
-                  //       nsba_offer: nsba,
-                  //       num: num.toString(),
-                  //       status: "pending",
-                  //       total: pricex.toString(),
-                  //     ));
-                  //   }
-                  // }
-                },
-                builder: (context, state) {
-                  return RaisedButton(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: SizedBox(
-                          height: 56,
-                          width: double.infinity,
-                          child: FlatButton(
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            color: Colors.yellow,
-                            child: Text(
-                              "42".tr,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 23,
-                                  fontFamily: "Reboto",
-                                  fontStyle: FontStyle.italic),
-                            ),
+                                    if (controller3.price != null) {
+                                      pricex = controller3.price;
+
+                                      print("p1=" + pricex.toString());
+                                    }
+
+                                    if (controller3.price == null) {
+                                      pricex = widget.price * controller3.x2;
+
+                                      print("p1=" + pricex.toString());
+                                    }
+
+                                    _formKey.currentState.save();
+
+                                    if (_formKey.currentState.validate()) {
+                                      print("email===x+"+emailx);
+                                      Get.to(ToogleScreen(
+                                        name: name.text ?? "",
+                                        email: emailx ?? "",
+                                        phone: mobile.text ?? "",
+                                        code: code.text ?? "",
+                                        d_app: name1 ?? "",
+                                        from: x.toString(),
+                                        point: "it will be updated soon",
+                                        to: widget.city.toString(),
+                                        trip: widget.trip.toString(),
+                                        // 'price':widget.price.toString(),
+                                        nsba_offer: nsba,
+                                        num: num.toString(),
+                                        status: "pending",
+                                        total: pricex.toString(),
+                                      ));
+                                    } else {
+                                      Get.snackbar("Error! !!! ", "75".tr,
+                                          snackPosition: SnackPosition.BOTTOM,
+                                          backgroundColor: Colors.red,
+                                          borderRadius: 10,
+                                          margin: EdgeInsets.all(
+                                              Dimentions.Radius10),
+                                          borderColor: Colors.red,
+                                          borderWidth: 2,
+                                          icon: Icon(Icons.error,
+                                              color: Colors.white));
+                                    }
+
+                                    // add when paymob is live
+                                    // paymentCubit.get(context).getFirstToken(
+                                    //     finalPrice.toString(),
+                                    //     emailx,
+                                    //     x.toString(),
+                                    //     name.text,
+                                    //     name.text,
+                                    //     mobile.text);
+
+                                    // await Firestore.instance.collection('orders').add({
+                                    //   'name': name.text ?? "",
+                                    //   'email': emailx ?? "",
+                                    //   'phone': mobile.text ?? "",
+                                    //   'code': code.text ?? "",
+                                    //   'd_app': name1 ?? "",
+                                    //   'from': x.toString(),
+                                    //   'point': "it will be updated soon",
+                                    //   'to': widget.city.toString(),
+                                    //   'trip': widget.trip.toString(),
+                                    //   // 'price':widget.price.toString(),
+                                    //   'nsba_offer': nsba,
+                                    //   'num': num.toString(),
+                                    //   "status": "pending",
+                                    //   "total": pricex.toString(),
+                                    // });
+                                  });
+                            },
                           ),
                         ),
-                      ),
-                      textColor: Colors.black,
-                      color: Colors.yellow,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      onPressed: () {
-                        String name1 = box.read('sales_name') ?? 'x';
-                        String namex = box.read('name') ?? 'x';
-                        String emailx = box.read('email') ?? 'x';
-                        String nsba = box.read('nsba') ?? 'x';
-                        int num = box.read('num') ?? 0;
-                        int pricex2 = 0;
-
-                        if (pricex2 == 0) {
-
-                          pricex2 = (widget.price * num + shipping);
-                        } else {
-                          pricex2 = pricex2;
-                        }
-                        print("pricex=" + pricex2.toString());
-                        int finalPrice = pricex2 * 100;
-
-                        if (controller3.price !=
-                            null) {
-
-                          pricex =
-                              controller3.price;
-
-                          print("p1="+pricex.toString());
-                        }
-
-                        if (controller3.price ==
-                            null) {
-                          pricex = widget.price *
-                              controller3.x2;
-
-                          print("p1="+pricex.toString());
-                        }
-
-
-                        _formKey.currentState.save();
-
-                        if (_formKey.currentState.validate()) {
-
-                          Get.to(ToogleScreen(
-                            name: name.text ?? "",
-                            email: emailx ?? "",
-                            phone: mobile.text ?? "",
-                            code: code.text ?? "",
-                            d_app: name1 ?? "",
-                            from: x.toString(),
-                            point: "it will be updated soon",
-                            to: widget.city.toString(),
-                            trip: widget.trip.toString(),
-                            // 'price':widget.price.toString(),
-                            nsba_offer: nsba,
-                            num: num.toString(),
-                            status: "pending",
-                            total: pricex.toString(),
-                          ));
-                        } else {
-                          Get.snackbar("Error! !!! ", "75".tr,
-                              snackPosition: SnackPosition.BOTTOM,
-                              backgroundColor: Colors.red,
-                              borderRadius: 10,
-                              margin: EdgeInsets.all(10),
-                              borderColor: Colors.red,
-                              borderWidth: 2,
-                              icon: Icon(Icons.error, color: Colors.white));
-                        }
-
-                        // add when paymob is live
-                        // paymentCubit.get(context).getFirstToken(
-                        //     finalPrice.toString(),
-                        //     emailx,
-                        //     x.toString(),
-                        //     name.text,
-                        //     name.text,
-                        //     mobile.text);
-
-                        // await Firestore.instance.collection('orders').add({
-                        //   'name': name.text ?? "",
-                        //   'email': emailx ?? "",
-                        //   'phone': mobile.text ?? "",
-                        //   'code': code.text ?? "",
-                        //   'd_app': name1 ?? "",
-                        //   'from': x.toString(),
-                        //   'point': "it will be updated soon",
-                        //   'to': widget.city.toString(),
-                        //   'trip': widget.trip.toString(),
-                        //   // 'price':widget.price.toString(),
-                        //   'nsba_offer': nsba,
-                        //   'num': num.toString(),
-                        //   "status": "pending",
-                        //   "total": pricex.toString(),
-                        // });
-                      });
-                },
-              ),
-            ),
-    )])),
+                      )
+                    ])),
             SizedBox(
               height: 0,
             )

@@ -1,4 +1,4 @@
-
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/sales/sales.dart';
 
 import 'package:ecommerce/view/auth/forget_password.dart';
@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ecommerce/view/widgets/custom_button.dart';
 import 'package:ecommerce/view/widgets/custom_text.dart';
-
 
 class SalesLoginView extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -40,7 +39,7 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                       child: Column(
                         children: [
                           SizedBox(
-                            height: 30,
+                            height: Dimentions.height30,
                           ),
                           Text(
                             "1".tr,
@@ -58,7 +57,7 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                             textAlign: TextAlign.center,
                           ),
                           SizedBox(
-                            height: 40,
+                            height: Dimentions.height40,
                           ),
                           Form(
                               key: _formKey,
@@ -74,11 +73,12 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                   fontSize: 14,
                                   color: Colors.grey,
                                 ),
-                                SizedBox(height: 20),
+                                SizedBox(height: Dimentions.height20),
                                 CustomTextFormField(
                                     text: "4".tr,
                                     hint: "5".tr,
                                     obs: false,
+                                    obx: false,
                                     onSave: (value) {
                                       //   controller.email = value;
                                       controller.email = value;
@@ -88,10 +88,11 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                         print("error");
                                       }
                                     }),
-                                SizedBox(height: 20),
+                                SizedBox(height: Dimentions.height20),
 
                                 CustomTextFormField(
                                     text: "6".tr,
+                                    obx:true,
                                     hint: "7".tr,
                                     obs: true,
                                     onSave: (value) {
@@ -102,7 +103,7 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                         print("error");
                                       }
                                     }),
-                                SizedBox(height: 15),
+                                SizedBox(height: Dimentions.height15),
                                 InkWell(
                                   child: Custom_Text(
                                     text: "8".tr,
@@ -113,7 +114,7 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                     Get.to(ForgetPasswordView());
                                   },
                                 ),
-                                SizedBox(height: 40),
+                                SizedBox(height: Dimentions.height40),
                                 CustomButton(
                                   onPressed: () {
                                     _formKey.currentState.save();
@@ -125,7 +126,7 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                   },
                                   text: "2".tr,
                                 ),
-                                SizedBox(height: 40),
+                                SizedBox(height: Dimentions.height40),
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
@@ -140,7 +141,8 @@ class SalesLoginView extends GetWidget<AuthViewModel> {
                                       child: Text(
                                         "11".tr,
                                         style: TextStyle(
-                                            fontSize: 16, color: Colors.blue),
+                                            fontSize: 16,
+                                            color: Colors.redAccent),
                                       ),
                                     ),
                                   ],

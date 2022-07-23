@@ -1,3 +1,4 @@
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/locale/locale_controller.dart';
 import 'package:ecommerce/view/home/main_home.dart';
 
@@ -20,16 +21,15 @@ class LanguageBody extends StatelessWidget {
 
     return Column(
       children: [
-        SizedBox(height: 70),
+        SizedBox(height: Dimentions.height70),
         //ProfilePic(),
-        SizedBox(height: 40),
+        SizedBox(height: Dimentions.height40),
         ProfileMenu(
           icon: "assets/arabic.svg",
           text: "58".tr,
           press: () {
             controllerLang.ChangeLang("ar");
             Get.off(MainPage());
-
           },
         ),
         // ProfileMenu(
@@ -43,8 +43,6 @@ class LanguageBody extends StatelessWidget {
           press: () {
             controllerLang.ChangeLang("en");
             Get.off(MainPage());
-
-
           },
         ),
       ],
@@ -68,7 +66,7 @@ class ProfileMenu extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: FlatButton(
-          padding: EdgeInsets.all(20),
+          padding: EdgeInsets.all(Dimentions.height20),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           color: Colors.black54,
@@ -77,10 +75,10 @@ class ProfileMenu extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 icon,
-                width: 22,
+                width: Dimentions.width22,
                 color: Colors.yellow,
               ),
-              SizedBox(width: 20),
+              SizedBox(width: Dimentions.Radius20),
               Expanded(
                   child: Text(
                 text,

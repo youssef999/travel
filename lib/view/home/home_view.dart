@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/services/data_controller.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:ecommerce/view/hotel&trips/all_trips.dart';
@@ -14,10 +15,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../widgets/custom_text.dart';
 
-
-
-
-
 class HomeView extends StatefulWidget {
   String email;
   HomeView({this.email});
@@ -29,25 +26,20 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   bool isExecuted = false;
 
-
-
-  double position=260.0;
-
-
+  double position = 280.0;
 
   @override
   Widget build(BuildContext context) {
-
     TextEditingController search_txt = new TextEditingController();
     QuerySnapshot querySnapshot;
     final box = GetStorage();
-    String box_token = box.read('token') ?? "x";
-    String lang=box.read("lang") ?? 'x';
-    if(lang=="en"){
-      position=260.0;
+   // String box_token = box.read('token') ?? "x";
+    String lang = box.read("lang") ?? 'x';
+    if (lang == "en") {
+      position = 280.0;
     }
-    if(lang=="ar"){
-      position=20.0;
+    if (lang == "ar") {
+      position = 15.0;
     }
 
     Widget searchedData() {
@@ -57,106 +49,98 @@ class _HomeViewState extends State<HomeView> {
             return ListTile(
               leading: CircleAvatar(
                 backgroundImage:
-                    NetworkImage(querySnapshot.docs[index].data()['image']),
+                NetworkImage(querySnapshot.docs[index].data()['image']),
               ),
               title: Text(querySnapshot.docs[index].data()['name']),
             );
           });
     }
 
-
     return GetBuilder<HomeViewModel>(
       init: Get.find(),
       builder: (controller) => controller.loading.value
           ? Center(child: CircularProgressIndicator())
           : Scaffold(
-              appBar:
-              AppBar(
-                toolbarHeight: 0,
-                elevation: 0,
-                backgroundColor: Colors.yellow,
-                iconTheme: IconThemeData(
-                  color: Colors.yellow,
-                ),
-                title: Container(
-                  height: 10,
-                ),
+          appBar: AppBar(
+            toolbarHeight: 0,
+            elevation: 0,
+            backgroundColor: Colors.yellow,
+            iconTheme: IconThemeData(
+              color: Colors.yellow,
+            ),
+            title: Container(
+              height: Dimentions.height10,
+            ),
+          ),
+          body: isExecuted
+              ? searchedData
+              : Container(
+            margin: EdgeInsets.only(right: 15, left: 15),
+            child: ListView(children: [
+              SizedBox(height: Dimentions.height25),
+              GetBuilder<DataController>(
+                  init: DataController(),
+                  builder: (controller) => _searchTextFormField()),
+              SizedBox(height: Dimentions.height25),
+              Container(
+                margin: EdgeInsets.only(left: 15, right: 15),
               ),
-
-              body: isExecuted
-                  ? searchedData
-                  : Container(
-
-                      margin: EdgeInsets.only(right: 15, left: 15),
-                      child: ListView(
-                          children: [
-
-                        SizedBox(height: 25),
-                        GetBuilder<DataController>(
-                            init: DataController(),
-                            builder: (controller) => _searchTextFormField()),
-                        SizedBox(height: 25),
-
-                        Container(
-                          margin: EdgeInsets.only(left: 15, right: 15),
-                        ),
-
-                        _listViewCarsoul(),
-                        SizedBox(height: 30),
-                        Row(children: [
-
-                          Custom_Text(
-                            text: "25".tr,
-                            fontSize: 18,
-                            color: Colors.black,
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Spacer(),
-                          InkWell(
-                            child: Custom_Text(
-                              text: "26".tr,
-                              fontSize: 18,
-                              color: Colors.grey,
-                            ),
-                            onTap: () {
-                              Get.put(HomeViewModel());
-                              Get.to(HotelsView());
-                            },
-                          ),
-                        ]),
-                        SizedBox(height: 15),
-                        _listViewHotels(),
-                        SizedBox(height: 50),
-                        Row(
-                          children: [
-                            Custom_Text(
-                              text: "27".tr,
-                              fontSize: 20,
-                              color: Colors.black,
-                            ),
-                            SizedBox(
-                              width: 160,
-                            ),
-                            InkWell(
-                              child: Custom_Text(
-                                text: "63".tr,
-                                fontSize: 18,
-                                color: Colors.grey,
-                              ),
-                              onTap: () {
-                                Get.put(HomeViewModel());
-                                Get.to(AllTrips());
-                              },
-                            ),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        _listViewTrips(),
-                        SizedBox(height: 10),
-                      ]),
-                    )),
+              _listViewCarsoul(),
+              SizedBox(height: Dimentions.height30),
+              Row(children: [
+                Custom_Text(
+                  text: "25".tr,
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Spacer(),
+                InkWell(
+                  child: Custom_Text(
+                    text: "26".tr,
+                    fontSize: 18,
+                    color: Colors.grey,
+                  ),
+                  onTap: () {
+                    Get.put(HomeViewModel());
+                    Get.to(HotelsView());
+                  },
+                ),
+              ]),
+              SizedBox(height: Dimentions.height15),
+              _listViewHotels(),
+              SizedBox(height: Dimentions.height50),
+              Row(
+                children: [
+                  Custom_Text(
+                    text: "27".tr,
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                  SizedBox(
+                    width: 160,
+                  ),
+                  Spacer(),
+                  InkWell(
+                    child: Custom_Text(
+                      text: "63".tr,
+                      fontSize: 18,
+                      color: Colors.grey,
+                    ),
+                    onTap: () {
+                      Get.put(HomeViewModel());
+                      Get.to(AllTrips());
+                    },
+                  ),
+                ],
+              ),
+              SizedBox(height: Dimentions.height10),
+              _listViewTrips(),
+              SizedBox(height: Dimentions.height10),
+            ]),
+          )),
     );
   }
 
@@ -165,52 +149,53 @@ class _HomeViewState extends State<HomeView> {
     QuerySnapshot querySnapshot;
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(Dimentions.Radius20),
         color: Colors.grey.shade200,
       ),
       child: GetBuilder<DataController>(
           init: DataController(),
           builder: (controller) => Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Stack(
-              children:[
+            child: Stack(children: [
               TextFormField(
-                controller: search_txt,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "   "+"64".tr,
-                  hintStyle: TextStyle(
-                    color: Colors.grey,
-                    fontSize: 16,
-                  ))),
-                Positioned(
-                  top:10,
-                  left: position,
-                  child: InkWell(
-                      child: Icon(Icons.search, color: Colors.black),
-                      onTap: () {
-                        controller.queryData(search_txt.text).then((value) {
-                          querySnapshot = value;
-                          isExecuted = true;
-                          print("issss" + isExecuted.toString());
-                          print("qqq=" + querySnapshot.docs.toString());
-                          print("sss=" + search_txt.text.toString());
-                          Get.to(SearchView(
-                            search_txt: search_txt.text.toString()
-                          ));
-                        });
-                      }),
-                ),
+                  controller: search_txt,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "   " + "64".tr,
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      )),
+                onFieldSubmitted: (txt) {
+                  search_txt.text = txt;
+
+                  Get.to(SearchView(
+                      search_txt: search_txt.text.toString()));
+                },
 
 
-
-
-              ]
-
-            ),
+              ),
+              Positioned(
+                top: 10,
+                left: position,
+                child: InkWell(
+                    child: Icon(Icons.search, color: Colors.black),
+                    onTap: () {
+                      controller.queryData(search_txt.text).then((value) {
+                        querySnapshot = value;
+                        isExecuted = true;
+                        print("issss" + isExecuted.toString());
+                        print("qqq=" + querySnapshot.docs.toString());
+                        print("sss=" + search_txt.text.toString());
+                        Get.to(SearchView(
+                            search_txt: search_txt.text.toString()));
+                      });
+                    }),
+              ),
+            ]),
           )
-          //}
-          ),
+        //}
+      ),
     );
   }
 
@@ -219,7 +204,7 @@ class _HomeViewState extends State<HomeView> {
       init: Get.find(),
       builder: (controller) => SingleChildScrollView(
         child: Container(
-          height: 242,
+          height: Dimentions.pageViewContainer,
           child: ListView.separated(
             itemCount: controller.categoryModel.length,
             scrollDirection: Axis.horizontal,
@@ -228,7 +213,7 @@ class _HomeViewState extends State<HomeView> {
                 child: InkWell(
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(Dimentions.Radius30),
                     ),
                     child: Column(
                       children: [
@@ -238,10 +223,14 @@ class _HomeViewState extends State<HomeView> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(40),
-                                      topRight: Radius.circular(40),
-                                      bottomLeft: Radius.circular(40),
-                                      bottomRight: Radius.circular(40)),
+                                      topLeft:
+                                      Radius.circular(Dimentions.Radius40),
+                                      topRight:
+                                      Radius.circular(Dimentions.Radius40),
+                                      bottomLeft:
+                                      Radius.circular(Dimentions.Radius40),
+                                      bottomRight:
+                                      Radius.circular(Dimentions.Radius40)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.3),
@@ -251,9 +240,9 @@ class _HomeViewState extends State<HomeView> {
                                           0, 3), // changes position of shadow
                                     ),
                                   ]),
-                              height: 180,
+                              height: Dimentions.pageViewContainer170,
                               child: Container(
-                                height: 244,
+                                height: Dimentions.ViewContainer,
                                 child: Image.network(
                                   controller.categoryModel[index].image,
                                   fit: BoxFit.fill,
@@ -261,7 +250,6 @@ class _HomeViewState extends State<HomeView> {
                               ),
                             ),
                             onTap: () {
-
                               Get.put(HomeViewModel());
                               Get.to(DetailsView3(
                                 name: controller.categoryModel[index].name,
@@ -272,14 +260,14 @@ class _HomeViewState extends State<HomeView> {
                               ));
                             }),
                         SizedBox(
-                          height: 10,
+                          height: Dimentions.height10,
                         ),
                         Custom_Text(
                           text: controller.categoryModel[index].name.toString(),
                           alignment: Alignment.bottomCenter,
                         ),
                         SizedBox(
-                          height: 7,
+                          height: Dimentions.height7,
                         ),
                         RatingBar(
                           ignoreGestures: true,
@@ -340,7 +328,7 @@ class _HomeViewState extends State<HomeView> {
       init: Get.find(),
       builder: (controller) => SingleChildScrollView(
         child: Container(
-          height: 240,
+          height: Dimentions.pageViewContainer240,
           //width:500,
           child: ListView.separated(
             itemCount: controller.carsoulModel.length,
@@ -348,24 +336,24 @@ class _HomeViewState extends State<HomeView> {
             itemBuilder: (context, index) {
               return Container(
                 child: Container(
-                  height: 202,
+                  height: Dimentions.pageViewContainer202,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(Dimentions.Radius30),
                   ),
                   //  height: 150,
                   child: Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(40),
-                      topLeft: Radius.circular(40),
-                      bottomLeft: Radius.circular(40),
-                      bottomRight: Radius.circular(40),
-                    )),
+                          topRight: Radius.circular(Dimentions.Radius40),
+                          topLeft: Radius.circular(Dimentions.Radius40),
+                          bottomLeft: Radius.circular(Dimentions.Radius40),
+                          bottomRight: Radius.circular(Dimentions.Radius40),
+                        )),
                     child: Carousel(
                       borderRadius: true,
-                      radius: Radius.circular(30),
+                      radius: Radius.circular(Dimentions.Radius30),
                       autoplay: true,
                       animationCurve: Curves.fastOutSlowIn,
                       animationDuration: Duration(milliseconds: 1250),
@@ -406,19 +394,19 @@ class _HomeViewState extends State<HomeView> {
       init: Get.find(),
       builder: (controller) => SingleChildScrollView(
         child: Container(
-          height: 235,
+          height: Dimentions.pageViewContainer235,
           child: ListView.separated(
             itemCount: controller.productModel.length,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Container(
                 decoration: BoxDecoration(
-                    // color: Colors.orange,
+                  // color: Colors.orange,
                     shape: BoxShape.circle),
                 child: InkWell(
                   child: Card(
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(Dimentions.Radius20),
                     ),
                     child: Column(
                       children: [
@@ -428,10 +416,14 @@ class _HomeViewState extends State<HomeView> {
                               decoration: BoxDecoration(
                                   color: Colors.white,
                                   borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(40),
-                                      topRight: Radius.circular(40),
-                                      bottomLeft: Radius.circular(40),
-                                      bottomRight: Radius.circular(40)),
+                                      topLeft:
+                                      Radius.circular(Dimentions.Radius40),
+                                      topRight:
+                                      Radius.circular(Dimentions.Radius40),
+                                      bottomLeft:
+                                      Radius.circular(Dimentions.Radius40),
+                                      bottomRight:
+                                      Radius.circular(Dimentions.Radius40)),
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.3),
@@ -441,9 +433,9 @@ class _HomeViewState extends State<HomeView> {
                                           0, 3), // changes position of shadow
                                     ),
                                   ]),
-                              height: 170,
+                              height: Dimentions.pageViewContainer170,
                               child: Container(
-                                height: 244,
+                                height: Dimentions.ViewContainer,
                                 child: Image.network(
                                     controller.productModel[index].image,
                                     fit: BoxFit.fill),
@@ -457,16 +449,15 @@ class _HomeViewState extends State<HomeView> {
                                 details: controller.productModel[index].des,
                                 image: controller.productModel[index].image,
                                 city: controller.productModel[index].city,
-
                               ));
                             }),
-                        SizedBox(height: 10),
+                        SizedBox(height: Dimentions.height10),
                         Custom_Text(
                           text: controller.productModel[index].name.toString(),
                           alignment: Alignment.bottomLeft,
                         ),
                         SizedBox(
-                          height: 7,
+                          height: Dimentions.height7,
                         ),
                         RatingBar(
                           ignoreGestures: true,
@@ -496,13 +487,12 @@ class _HomeViewState extends State<HomeView> {
                           },
                         ),
                         SizedBox(
-                          height: 2,
+                          height: Dimentions.height2,
                         ),
                       ],
                     ),
                   ),
                   onTap: () {
-
                     Get.to(DetailsView2(
                       name: controller.productModel[index].name,
                       price: controller.productModel[index].price,

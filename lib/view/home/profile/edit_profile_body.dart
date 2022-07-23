@@ -1,3 +1,4 @@
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/home/main_home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
@@ -16,11 +17,11 @@ class BodyEdit extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: SingleChildScrollView(
-            padding: EdgeInsets.all(10),
+            padding: EdgeInsets.all(Dimentions.height10),
             child: Column(
               children: [
                 SizedBox(
-                  height: 20,
+                  height: Dimentions.height20,
                 ),
                 Text(
                   "35".tr,
@@ -31,14 +32,14 @@ class BodyEdit extends StatelessWidget {
                   textAlign: TextAlign.start,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: Dimentions.height20,
                 ),
                 MenuForm(
                   name: name,
                   email: email,
                 ),
                 SizedBox(
-                  height: 20,
+                  height: Dimentions.height20,
                 )
               ],
             ),
@@ -102,7 +103,7 @@ class _MenuFormState extends State<MenuForm> {
           //   ),
           // ),
           SizedBox(
-            height: 20,
+            height: Dimentions.height20,
           ),
           TextFormField(
             decoration: InputDecoration(
@@ -115,23 +116,19 @@ class _MenuFormState extends State<MenuForm> {
                 vertical: 20,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
             ),
           ),
           SizedBox(
-            height: 50,
+            height: Dimentions.height50,
           ),
           Text(
             "36".tr,
@@ -142,7 +139,7 @@ class _MenuFormState extends State<MenuForm> {
             textAlign: TextAlign.start,
           ),
           SizedBox(
-            height: 20,
+            height: Dimentions.height20,
           ),
           TextFormField(
             controller: password,
@@ -155,23 +152,19 @@ class _MenuFormState extends State<MenuForm> {
                 vertical: 20,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
             ),
           ),
           SizedBox(
-            height: 20,
+            height: Dimentions.height20,
           ),
           TextFormField(
             controller: password_check,
@@ -184,33 +177,29 @@ class _MenuFormState extends State<MenuForm> {
                 vertical: 20,
               ),
               enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
               focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(28),
-                borderSide: BorderSide(
-                  color: Colors.yellow
-                ),
+                borderRadius: BorderRadius.circular(Dimentions.Radius28),
+                borderSide: BorderSide(color: Colors.yellow),
                 gapPadding: 10,
               ),
             ),
           ),
           ////////////////////
           SizedBox(
-            height: 50,
+            height: Dimentions.height50,
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 15),
             child: SizedBox(
-              height: 56,
+              height: Dimentions.ViewContainer56,
               width: double.infinity,
               child: FlatButton(
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20)),
+                      borderRadius: BorderRadius.circular(Dimentions.Radius20)),
                   color: Colors.yellow,
                   onPressed: () {
                     if (password_check.text.toString() !=

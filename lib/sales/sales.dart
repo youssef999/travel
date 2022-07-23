@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/sales/sales_login_view.dart';
 import 'package:ecommerce/view/auth/login_view.dart';
 import 'package:ecommerce/view/widgets/custom_button.dart';
@@ -39,10 +40,9 @@ class SalesView extends GetWidget<AuthViewModel> {
               padding: EdgeInsets.symmetric(horizontal: 20),
               child: Form(
                 key: _formKey,
-                child: Column
-                  (children: [
+                child: Column(children: [
                   SizedBox(
-                    height: 30,
+                    height: Dimentions.height30,
                   ),
                   Text(
                     "15".tr,
@@ -60,7 +60,7 @@ class SalesView extends GetWidget<AuthViewModel> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(
-                    height: 40,
+                    height: Dimentions.height40,
                   ),
                   // Container(
                   //   height: 120,
@@ -69,6 +69,7 @@ class SalesView extends GetWidget<AuthViewModel> {
                   // ),
                   CustomTextFormField(
                       text: "17".tr,
+                      obx: false,
                       hint: "18".tr,
                       obs: false,
                       onSave: (value) {
@@ -79,7 +80,7 @@ class SalesView extends GetWidget<AuthViewModel> {
                           print("error");
                         }
                       }),
-                  SizedBox(height: 20),
+                  SizedBox(height: Dimentions.height20),
                   // CustomTextFormField(
                   //     text: "E_mail",
                   //     hint: "dev@yahoo.com",
@@ -94,6 +95,7 @@ class SalesView extends GetWidget<AuthViewModel> {
                   CustomTextFormField(
                       text: "4".tr,
                       hint: "5".tr,
+                      obx: false,
                       obs: false,
                       onSave: (value) {
                         controller.email = value;
@@ -103,10 +105,11 @@ class SalesView extends GetWidget<AuthViewModel> {
                           print("error");
                         }
                       }),
-                  SizedBox(height: 20),
+                  SizedBox(height: Dimentions.height20),
                   CustomTextFormField(
                       text: "6".tr,
                       hint: "7".tr,
+                      obx: true,
                       obs: true,
                       onSave: (value) {
                         controller.password = value;
@@ -116,10 +119,11 @@ class SalesView extends GetWidget<AuthViewModel> {
                           print("error");
                         }
                       }),
-                  SizedBox(height: 20),
+                  SizedBox(height: Dimentions.height20),
                   CustomTextFormField(
                       text: "19".tr,
                       hint: "20".tr,
+                      obx:false,
                       obs: false,
                       onSave: (value) {
                         controller.phone = value;
@@ -130,10 +134,11 @@ class SalesView extends GetWidget<AuthViewModel> {
                         }
                       }),
 
-                  SizedBox(height: 20),
+                  SizedBox(height: Dimentions.height20),
                   CustomTextFormField(
                       text: "21".tr,
                       hint: "22".tr,
+                      obx: false,
                       obs: false,
                       onSave: (value) {
                         controller.passcode = value;
@@ -152,12 +157,11 @@ class SalesView extends GetWidget<AuthViewModel> {
                       if (_formKey.currentState.validate()) {
                         controller.createSalesAccount();
                         //  controller.createAccountWithEmailAndPassword();
-
                       }
                     },
                     text: "11".tr,
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: Dimentions.height20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -165,17 +169,22 @@ class SalesView extends GetWidget<AuthViewModel> {
                         "23".tr,
                         style: TextStyle(fontSize: 16),
                       ),
+                      SizedBox(width:3,),
+
                       GestureDetector(
                         onTap: () {
                           Get.to(SalesLoginView());
                         },
                         child: Text(
                           "2".tr,
-                          style: TextStyle(fontSize: 16, color: Colors.blue),
+                          style: TextStyle(
+                              fontSize: 16, color: Colors.redAccent),
                         ),
                       ),
+
                     ],
                   ),
+                  SizedBox(height: 40),
                 ]),
               )),
         ))));

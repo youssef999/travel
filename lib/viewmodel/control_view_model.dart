@@ -1,5 +1,5 @@
 
-import 'package:admob_flutter/admob_flutter.dart';
+
 import 'package:ecommerce/view/cities_view.dart';
 import 'package:ecommerce/view/home/home_view.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class ControlViewModel extends GetxController {
   get navigotorValue => _navigatorValue;
   Widget _currentScreen = HomeView();
   get currentScreen => _currentScreen;
-  AdmobInterstitial intersitialAd;
+
 
 
   @override

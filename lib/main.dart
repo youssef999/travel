@@ -1,4 +1,5 @@
 
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:ecommerce/locale/locale.dart';
 import 'package:ecommerce/locale/locale_controller.dart';
 import 'package:ecommerce/pay_mob/network/dio.dart';
@@ -14,8 +15,9 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:lottie/lottie.dart';
 import 'helper/binding.dart';
-
+import 'package:page_transition/page_transition.dart';
 
 
 Future<void> main() async {
@@ -27,9 +29,8 @@ Future<void> main() async {
   Get.lazyPut(() => EmployeeViewModel(), fenix: true);
   Get.lazyPut(() => HomeViewModel());
   Get.put(MyLoacleController());
-
   await GetStorage.init();
-  await DioHelperPayment.init();
+  //await DioHelperPayment.init();
   runApp(MyApp());
 }
 
@@ -45,9 +46,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
-    new Future.delayed(new Duration(seconds: 3), () {
-
+    new Future.delayed(new Duration(seconds: 4), () {
       print("xxxx");
       final box = GetStorage();
       String user = box.read("email") ?? 'x';
@@ -75,12 +74,12 @@ class _MyAppState extends State<MyApp> {
 
       if (sales2 != 'w' ) {
         print("sales=" + sales.toString());
-        Get.off(SalesDetails(
-          name: sales,
-          email: sales2,
-        ));
+        Get.off(MainPage());
+        // Get.off(SalesDetails(
+        //   name: sales,
+        //   email: sales2,
+        // ));
       }
-
     });
   }
 
@@ -93,20 +92,40 @@ class _MyAppState extends State<MyApp> {
         initialBinding: Binding(),
         debugShowCheckedModeBanner: false,
         home: Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 0,
+              elevation: 0,
+              backgroundColor: Colors.yellow,
+              iconTheme: IconThemeData(
+                color: Colors.yellow,
+              ),
+            ),
             backgroundColor:  Colors.white,
             //HexColor("#0B315e"),
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment:MainAxisAlignment.center,
-              children: [
-                Container(
-          height: 600,
-          width: 400,
-          // padding:EdgeInsets.only(top:260),
-          color: Colors.white,
-          child: Image.asset('assets/tra.jpg', fit: BoxFit.contain),
-        ),
-              ],
+            body: AnimatedSplashScreen(
+              splash:Lottie.asset("assets/spl2.json"),
+
+              // Column(
+              //   children: [
+              //     Container(
+              //       height: 140,
+              //         width: 240,
+              //         child: Image.asset('assets/tra.png')),
+              //     SizedBox(
+              //       height:10
+              //     ),
+              //     Text("Travira",style:TextStyle(
+              //       fontSize:29,color:Colors.black,fontWeight:FontWeight.bold
+              //     ),)
+              //   ],
+              // ),
+              nextScreen: MainPage(),
+              splashIconSize:250,
+              duration: 7000,
+              animationDuration:Duration(seconds: 1),
+              splashTransition:SplashTransition.fadeTransition,
+              backgroundColor:Colors.white,
+              pageTransitionType:PageTransitionType.fade
             ))
 
         );

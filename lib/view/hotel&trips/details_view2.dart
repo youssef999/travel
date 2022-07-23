@@ -1,9 +1,8 @@
-
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/booking/booking_form.dart';
 import 'package:ecommerce/view/widgets/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 
 class DetailsView2 extends StatefulWidget {
   String name;
@@ -37,23 +36,19 @@ class _DetailsView2State extends State<DetailsView2> {
         backgroundColor: Colors.yellow,
         elevation: 0,
       ),
-
       body: Container(
         child: Column(
           children: [
-            SizedBox(height: 6),
+            SizedBox(height: 0),
             Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .width - 100,
+                height: MediaQuery.of(context).size.width - 100,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(40),
-                        topRight: Radius.circular(40),
-                        bottomLeft: Radius.circular(40),
-                        bottomRight: Radius.circular(40)),
+                        // topLeft: Radius.circular(Dimentions.Radius40),
+                        // topRight: Radius.circular(Dimentions.Radius40),
+                        bottomLeft: Radius.circular(Dimentions.Radius40),
+                        bottomRight: Radius.circular(Dimentions.Radius40)),
                     boxShadow: [
                       BoxShadow(
                         color: Colors.grey.withOpacity(0.3),
@@ -63,18 +58,16 @@ class _DetailsView2State extends State<DetailsView2> {
                       ),
                     ]),
                 child: ClipRRect(
-                    borderRadius: BorderRadius.circular(30.0),
+                    borderRadius: BorderRadius.circular(Dimentions.Radius30),
                     child: Image.network(widget.image, fit: BoxFit.cover))),
-
-
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
-                  padding: EdgeInsets.all(17),
+                  padding: EdgeInsets.all(Dimentions.height10),
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 10,
+                        height: Dimentions.height10,
                       ),
                       Column(
                         children: [
@@ -82,17 +75,18 @@ class _DetailsView2State extends State<DetailsView2> {
                               text: widget.name.toString(),
                               fontSize: 26,
                               color: Colors.black),
-                          SizedBox(height: 10,),
+                          SizedBox(
+                            height: Dimentions.height10,
+                          ),
                           Custom_Text(
                               text: '76'.tr + " " + widget.city + " ",
                               fontSize: 18,
-                              color: Colors.black
-                          ),
+                              color: Colors.black),
                         ],
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: Dimentions.height10),
                       SizedBox(
-                        height: 10,
+                        height: Dimentions.height10,
                       ),
                       Row(
                         children: [
@@ -102,9 +96,8 @@ class _DetailsView2State extends State<DetailsView2> {
                             color: Colors.grey,
                           ),
                           SizedBox(
-                            width: 90,
+                            width: Dimentions.width30,
                           ),
-
                         ],
                       ),
                       SizedBox(
@@ -113,11 +106,11 @@ class _DetailsView2State extends State<DetailsView2> {
                       Directionality(
                         textDirection: TextDirection.rtl,
                         child: Text(widget.details,
-                            style: TextStyle(
-                                color: Colors.black, fontSize: 16)),
+                            style:
+                                TextStyle(color: Colors.black, fontSize: 16)),
                       ),
                       SizedBox(
-                        height: 20,
+                        height: Dimentions.height10,
                       ),
                       Directionality(
                         textDirection: TextDirection.rtl,
@@ -135,11 +128,12 @@ class _DetailsView2State extends State<DetailsView2> {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 15),
               child: SizedBox(
-                height: 56,
+                height: Dimentions.height55,
                 width: double.infinity,
                 child: FlatButton(
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20)),
+                        borderRadius:
+                            BorderRadius.circular(Dimentions.Radius20)),
                     color: Colors.yellow,
                     onPressed: () {
                       Get.to(BookingForm(
@@ -153,18 +147,15 @@ class _DetailsView2State extends State<DetailsView2> {
                       style: TextStyle(
                           fontSize: 18,
                           color: Colors.black,
-                          fontWeight: FontWeight.w700
-                      ),
+                          fontWeight: FontWeight.w700,
+                          fontFamily: "Reboto"),
                     )),
               ),
             ),
-            Container(height: 30),
-
-
+            Container(height: Dimentions.ViewContainer30),
           ],
         ),
       ),
     );
   }
-
 }

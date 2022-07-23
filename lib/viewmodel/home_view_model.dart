@@ -29,10 +29,8 @@ class HomeViewModel extends GetxController{
 
   HomeViewModel(){
     getCategory();
-
     getBestSellingProducts();
     getCarsoul();
-
   }
 
 

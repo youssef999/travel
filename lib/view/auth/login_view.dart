@@ -1,4 +1,4 @@
-
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/sales/sales_login_view.dart';
 import 'package:ecommerce/view/auth/forget_password.dart';
 import 'package:ecommerce/view/auth/register_view.dart';
@@ -32,7 +32,7 @@ class LoginView extends GetWidget<AuthViewModel> {
             child: Column(
               children: [
                 SizedBox(
-                  height: 30,
+                  height: Dimentions.height30,
                 ),
                 Text(
                   "1".tr,
@@ -50,15 +50,16 @@ class LoginView extends GetWidget<AuthViewModel> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: Dimentions.height40,
                 ),
                 Form(
                     key: _formKey,
                     child: Column(children: <Widget>[
-                      SizedBox(height: 20),
+                      SizedBox(height: Dimentions.height20),
                       CustomTextFormField(
                           text: "4".tr,
                           hint: "5".tr,
+                          obx: false,
                           obs: false,
                           onSave: (value) {
                             //   controller.email = value;
@@ -69,11 +70,12 @@ class LoginView extends GetWidget<AuthViewModel> {
                               print("error");
                             }
                           }),
-                      SizedBox(height: 20),
+                      SizedBox(height: Dimentions.height20),
                       CustomTextFormField(
                           text: "6".tr,
                           hint: "7".tr,
                           obs: true,
+                          obx: true,
                           onSave: (value) {
                             controller.password = value;
                           },
@@ -82,7 +84,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                               print("error");
                             }
                           }),
-                      SizedBox(height: 15),
+                      SizedBox(height: Dimentions.height15),
                       // InkWell(
                       //   child: Custom_Text(
                       //     text: "Forget Password",
@@ -115,7 +117,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                           )
                         ],
                       ),
-                      SizedBox(height: 20),
+                      SizedBox(height: Dimentions.height20),
                       CustomButton(
                         onPressed: () {
                           _formKey.currentState.save();
@@ -126,7 +128,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                         },
                         text: "9".tr,
                       ),
-                      SizedBox(height: 40),
+                      SizedBox(height: Dimentions.height40),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -134,20 +136,21 @@ class LoginView extends GetWidget<AuthViewModel> {
                             "10".tr,
                             style: TextStyle(fontSize: 16),
                           ),
+                          SizedBox(width:3),
                           GestureDetector(
                             onTap: () {
                               Get.to(RegisterView());
                             },
                             child: Text(
                               "11".tr,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.yellow[700]),
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.redAccent),
                             ),
                           ),
                         ],
                       ),
                       SizedBox(
-                        height: 15,
+                        height: Dimentions.height15,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -156,6 +159,7 @@ class LoginView extends GetWidget<AuthViewModel> {
                             "12".tr,
                             style: TextStyle(fontSize: 16),
                           ),
+                          SizedBox(width:3),
                           GestureDetector(
                             onTap: () {
                               final box = GetStorage();
@@ -163,8 +167,8 @@ class LoginView extends GetWidget<AuthViewModel> {
                                   box.read('sales_email') ?? "i";
                               String sales_name = box.read('sales_name') ?? "i";
                               print("ss=" + sales_name);
-                           //   if (sales_name == 'i') {
-                                Get.to(SalesLoginView());
+                              //   if (sales_name == 'i') {
+                              Get.to(SalesLoginView());
                               // } else {
                               //   Get.to(SalesDetails(
                               //     name: sales_name,
@@ -174,8 +178,8 @@ class LoginView extends GetWidget<AuthViewModel> {
                             },
                             child: Text(
                               "13".tr,
-                              style:
-                                  TextStyle(fontSize: 16, color: Colors.yellow[700]),
+                              style: TextStyle(
+                                  fontSize: 16, color: Colors.redAccent),
                             ),
                           ),
                         ],

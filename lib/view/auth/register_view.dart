@@ -1,7 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
+import 'package:ecommerce/helper/size_helper.dart';
 import 'package:ecommerce/view/auth/login_view.dart';
 import 'package:ecommerce/view/widgets/custom_button.dart';
-import 'package:ecommerce/view/widgets/custom_text.dart';
 import 'package:ecommerce/view/widgets/custom_textformfield.dart';
 import 'package:ecommerce/viewmodel/auth_view_model.dart';
 import 'package:ecommerce/viewmodel/codes_view_model.dart';
@@ -21,7 +21,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
           centerTitle: true,
           elevation: 0.0,
           backgroundColor: Colors.white,
-          title: Text("2".tr),
+          title: Text("11".tr),
           titleTextStyle: TextStyle(color: Color(0xFF8B8B8B), fontSize: 18),
           leading: GestureDetector(
             child: Icon(Icons.arrow_back, color: Colors.black),
@@ -33,7 +33,10 @@ class RegisterView extends GetWidget<AuthViewModel> {
         backgroundColor: Colors.white,
         body: SingleChildScrollView(
             child: Padding(
-          padding: EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0),
+          padding: EdgeInsets.only(
+              top: Dimentions.height20,
+              right: Dimentions.width20,
+              left: Dimentions.width20),
           child: Form(
               key: _formKey,
               child: Column(children: <Widget>[
@@ -52,9 +55,10 @@ class RegisterView extends GetWidget<AuthViewModel> {
                   "16".tr,
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Dimentions.height20),
                 CustomTextFormField(
                     text: "17".tr,
+                    obx:false,
                     hint: "18".tr,
                     obs: false,
                     onSave: (value) {
@@ -65,7 +69,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                         print("error");
                       }
                     }),
-                SizedBox(height: 20),
+                SizedBox(height: Dimentions.height20),
                 // CustomTextFormField(
                 //     text: "E_mail",
                 //     hint: "dev@yahoo.com",
@@ -80,6 +84,7 @@ class RegisterView extends GetWidget<AuthViewModel> {
                 CustomTextFormField(
                     text: "4".tr,
                     hint: "5".tr,
+                    obx: false,
                     obs: false,
                     onSave: (value) {
                       controller.email = value;
@@ -89,10 +94,11 @@ class RegisterView extends GetWidget<AuthViewModel> {
                         print("error");
                       }
                     }),
-                SizedBox(height: 20),
+                SizedBox(height: Dimentions.height20),
                 CustomTextFormField(
                     text: "6".tr,
                     hint: "7".tr,
+                    obx: true,
                     obs: true,
                     onSave: (value) {
                       controller.password = value;
@@ -102,22 +108,20 @@ class RegisterView extends GetWidget<AuthViewModel> {
                         print("error");
                       }
                     }),
-                SizedBox(height: 20),
+                SizedBox(height: Dimentions.height20),
 
-              //  _listViewCodes(),
-              //  SizedBox(height: 20),
+                //  _listViewCodes(),
+                //  SizedBox(height: 20),
                 CustomButton(
                   onPressed: () {
                     _formKey.currentState.save();
                     if (_formKey.currentState.validate()) {
-
                       controller.createAccountWithEmailAndPassword();
-
                     }
                   },
                   text: "11".tr,
                 ),
-                SizedBox(height: 20),
+                SizedBox(height: Dimentions.height20),
               ])),
         )));
   }

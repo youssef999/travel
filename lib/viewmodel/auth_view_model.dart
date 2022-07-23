@@ -10,12 +10,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+//import 'package:google_sign_in/google_sign_in.dart';
 
 
 class AuthViewModel extends GetxController {
 
-  GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
+ // GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
   FacebookLogin _facebookLogin = FacebookLogin();
   String email, password, name, phone, codeV, code,passcode;
@@ -55,10 +55,10 @@ class AuthViewModel extends GetxController {
 
   }
 
-  Future<void> sginInWithGoogle() async /* Sgin in with google method*/
-  {
-    GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
-  }
+  // Future<void> sginInWithGoogle() async /* Sgin in with google method*/
+  // {
+  //   GoogleSignInAccount googleSignInAccount = await _googleSignIn.signIn();
+  // }
 
   //  Future<void> googleSignInMehtod() async {
   //    final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
@@ -98,7 +98,6 @@ class AuthViewModel extends GetxController {
       box.write('pass', password);
       box.write('name', email);
 
-      final box_country = box.read('country') ?? "x";
 
       Get.offAll(MainPage());
       // if(box_country=='x'){
@@ -127,11 +126,16 @@ class AuthViewModel extends GetxController {
       });
       box.write('sales_name', name);
       box.write('sales_email', email);
-      Get.offAll(
-          SalesDetails(
-        email: email,
-          name:name,
-      ));
+
+
+
+      Get.off(MainPage());
+
+      // Get.offAll(
+      //     SalesDetails(
+      //   email: email,
+      //     name:name,
+      // ));
 
 
     } catch (e) {
@@ -189,12 +193,15 @@ class AuthViewModel extends GetxController {
         'email': email,
         'phone':phone,
         'code':name[0]+name[1]+code+phone[4]+password[4]+code2+x2.toString(),
+        //name[0]+name[1]+code+phone[4]+password[4]+code2+x2.toString()+name[1],
         'coins':0,
+         'nsba':10,
         'downloads':0,
+
       });
       });
       List<dynamic>jj=[
-        name[0]+name[1]+code+phone[3]+password[3]+code2+x2.toString(),
+        name[0]+name[1]+code+phone[4]+password[4]+code2+x2.toString(),
       ];
       //code_model[0].codes.add(name[0]+name[1]+code+phone[4]+password[4]+code2+x2.toString());
       Firestore.instance.collection('codes').document('6lAe3U77kqUIL2EUQLHG').
@@ -204,12 +211,12 @@ class AuthViewModel extends GetxController {
       box.write('sales_name', name);
       box.write('sales_email', email);
 
-
-      Get.offAll(
-          SalesDetails(
-            name: name,
-            email: email,
-          ));
+      Get.offAll(MainPage());
+      // Get.offAll(
+      //     SalesDetails(
+      //       name: name,
+      //       email: email,
+      //     ));
       //    Get.offAll(ControlView());
     } catch (e) {
       Get.snackbar("Error login Acoount", e.message,
